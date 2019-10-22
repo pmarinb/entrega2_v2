@@ -15,3 +15,6 @@ def registro(request):
         form = RegistroForm()
     
     return render(request, 'usuario/registro.html', {'form': form})
+
+def base(request):
+    return render(request, 'base/base.html',{})
