@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Logout</title>
-</head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{form}}
-    </form>
-</body>
-</html>
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+{% endblock %}
+
+{% block title %}
+Logout
+{% endblock %}
+
+{% block content %}
+<h1>Has Cerrado Sesion</h1>
+<a href="{% url 'login' %}">Iniciar Secion</a>
+{% endblock %}
