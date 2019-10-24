@@ -25,6 +25,7 @@ footer {
   margin-bottom: 30px;
 }
 
+
 @media (min-width: 1000px) {
   #wrap_all {
     padding-left: 10%;
@@ -41,9 +42,6 @@ footer {
   }
   footer {
     height: 50px;
-  }
-  #Relleno{
-    height: 400px;
   }
 }
 
