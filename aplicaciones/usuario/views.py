@@ -10,8 +10,12 @@ def registro(request):
         if form.is_valid():
             form.save()
             return redirect('/home')
-    
     else:
         form = RegistroForm()
     
     return render(request, 'usuario/registro.html', {'form': form})
+
+def base(request):
+    return render(request, 'base/base.html',{})
+
+    

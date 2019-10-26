@@ -1,0 +1,85 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+{% endblock %}
+
+{% block title %}
+Registro
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <div id="formulario" class="container-fluid">
+        <h1 id="registroTittle">Inicio de Secion</h1>
+
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        {{field.label}}: {{error}}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{error}}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="form-row">
+            <div class="col-lg-12">
+                <label id="lblUsuario">Nombre Usuario:</label>
+                <input type="text" class="form-control" name="username" placeholder="Nombre De Usuario">
+                <label for="">{{form.username.help_text}}</label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-lg-12">
+                <label id="lblUsuario">Nombre:</label>
+                <input type="text" class="form-control" name="first_name" placeholder="Nombre">
+
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-lg-12">
+                <label id="lblUsuario">Apellidos:</label>
+                <input type="text" class="form-control" name="last_name" placeholder="Apellidos">
+
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-lg-12">
+                <label id="lblUsuario">E-Mail:</label>
+                <input type="email" class="form-control" name="email" placeholder="nombre@dominio.com">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-lg-12">
+                <label id="lblPassword">Contraseña:</label>
+                <input type="password" class="form-control" name="password1" placeholder="Contraseña">
+                <label for="">{{form.password1.help_text}}</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-lg-12">
+                <label id="lblPassword">Contraseña Confirmacion:</label>
+                <input type="password" class="form-control" name="password2" placeholder="Confirmacion">
+                <label for="">{{form.password2.help_text}}</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <div class="container-fluid" style="height: 350px;">
+
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+{% endblock %}
+
+{% block title %}
+Logout
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-info" role="alert">
+    Has Cerrado Sesion, Click aca para volver a 
+    <a href="{% url 'login' %}" class="alert-link">Iniciar Secion</a>
+    
+</div>
+<div class="container-fluid" style="height: 750px;">
+
+</div>
+{% endblock %}
