@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+{% endblock %}
+
+{% block title %}
+Agregar
+{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form}}
+</form>
+{% endblock %}

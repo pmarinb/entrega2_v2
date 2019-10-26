@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('usuarios/', include('aplicaciones.usuario.urls'), name="usuarios"),
+    path('producto/', include('aplicaciones.producto.urls'), name="producto"),
     #paths de login
     path('login/',auth_views.LoginView.as_view(template_name='usuario/login.html'), name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='usuario/logout.html'), name='logout'),
@@ -29,6 +30,7 @@ urlpatterns = [
     path('recuperacion-contraseña/continuar',auth_views.PasswordResetDoneView.as_view(template_name='usuario/password_reset_done.html'), name='password_reset_done'),
     path('recuperacion-contraseña-confirmar/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(template_name='usuario/password_reset_confirm.html'), name='password_reset_confirm'),
     path('recuperacion-contraseña-exitoso',auth_views.PasswordResetCompleteView.as_view(template_name='usuario/password_reset_complete.html'), name='password_reset_complete'),
+    
 
 
 ]
