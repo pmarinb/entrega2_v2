@@ -15,3 +15,14 @@ class VehiculoForm(forms.ModelForm):
             'imgBack',
             'imgInside',
         ]
+        labels = {
+            'marca' :'Marca',
+            'year':'Año Produccion',
+            'modelo':'Modelo',
+            'motor':'Motor',
+            'precio':'Precio',            
+            'imgFront':'Imagen Frontal',
+            'imgSide':'Imagen Lateral',
+            'imgBack':'Imagen Trasera',
+            'imgInside':'Imagen Interior',
+        }

@@ -6,15 +6,17 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Vehiculo
 from .forms import VehiculoForm
 
+from django.contrib import messages
+
 # Create your views here.
-def agregar_carrera(request):
-    if request.method == "POST":
-        form = VehiculoForm(request.POST)
+def agregar_vehiculo(request):
+    if request.method == 'POST':
+        form = VehiculoForm(request.POST, request.FILES)
         if form.is_valid():
-            model_instance = form.save(commit=False)
-            model_instance.save()
-            return redirect('/usuarios/base')
+            form.save()            
+            modelo = form.cleaned_data.get('modelo')
+            messages.success(request, f'Vehiculo Modelo: {modelo} Agregado!')
+            return redirect('/producto/agregar')
     else:
         form = VehiculoForm()
-        return render(request, 'producto/agregar_vehiculo.html',
-                      {'form': form})
+    return render(request, 'producto/agregar_vehiculo.html', {'form': form})

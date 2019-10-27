@@ -51,7 +51,7 @@
                     <ul class="nav navbar-nav">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                                <a href="{% url 'logout' %}" class="nav-link">Cerrar Sesion</a>
+                            <a href="{% url 'logout' %}" class="nav-link">Cerrar Sesion</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
@@ -66,7 +66,14 @@
             </nav>
         </header>
         {% endblock %}
-
+        <!--Messages-->
+        {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+        {% endif %}
         {% block content %}
         <!--Contenido-->
         {% endblock %}
