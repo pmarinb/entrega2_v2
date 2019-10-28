@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+{% endblock %}
+
+{% block title %}
+Agregar
+{% endblock %}
+
+{% block content %}
+<form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+</form>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Año Produccion</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Vendido</th>
+        </tr>
+    <tbody>
+
+        {% for vehiculo in filter.qs %}
+        <tr>
+            <td>{{ vehiculo.id }}</td>
+            <td>{{ vehiculo.modelo }}</td>
+            <td>{{ vehiculo.marca }}</td>
+            <td>{{ vehiculo.year }}</td>
+            <td>{{ vehiculo.precio }}</td>
+            <td>
+                {% if vehiculo.vendido %}
+                Si
+                {% else %}
+                No
+                {% endif %}
+            </td>
+            <td><a class="text-danger" href="#">Eliminar</a></td>
+            <td><a class="text-danger" href="#">Modificar</a></td>
+        </tr>
+        {% endfor %}
+        </tr>
+    </tbody>
+    </thead>
+</table>
+<ul>
+
+</ul>
+{% endblock %}

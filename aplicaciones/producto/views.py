@@ -5,6 +5,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from .models import Vehiculo
 from .forms import VehiculoForm
+from .filters import VehiculoFilter
 
 from django.contrib import messages
 
@@ -20,3 +21,9 @@ def agregar_vehiculo(request):
     else:
         form = VehiculoForm()
     return render(request, 'producto/agregar_vehiculo.html', {'form': form})
+
+def busqueda(request):
+    vehiculo_list = Vehiculo.objects.all()
+    vehiculo_filter = VehiculoFilter(request.GET, queryset=vehiculo_list)
+    return render(request, 'producto/busqueda_vehiculo.html', {'filter': vehiculo_filter})
+
