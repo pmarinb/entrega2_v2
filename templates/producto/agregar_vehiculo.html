@@ -5,15 +5,14 @@
 {% endblock %}
 
 {% block title %}
-Agregar
+{{titulo}}
 {% endblock %}
 
 {% block content %}
-
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div id="formulario" class="form-group" >
-        <h1 id="registroTittle">Agregar Vehiculo</h1>
+        <h1 id="registroTittle">{{titulo}} Vehiculo</h1>
         {% if form.errors %}
             {% for field in form %}
                 {% for error in field.errors %}
@@ -33,7 +32,7 @@ Agregar
                 <label id="lblmarca">Marca:</label>
                 <select class="form-control" id="id_marca" required name="marca">
                     {% for x,y in form.fields.marca.choices %}
-                    <option value="{{ x }}" {% if form.fields.gender.value == x %} selected{% endif %}>{{ y }}</option>
+                    <option value="{{ x }}" {% if form.fields.gender.value == x or form.marca.value == x %} selected{% endif %}>{{ y }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -41,44 +40,65 @@ Agregar
         <div class="form-row">
             <div class="col-lg-12">
                 <label id="lblanio">Año Produccion:</label>
-                <input type="number" class="form-control" name="year" required placeholder="XXXX">
+                <input type="number" class="form-control" name="year" value="{{ form.year.value }}" required placeholder="XXXX">
             </div>
         </div>
         <div class="form-row">
             <div class="col-lg-12">
                 <label id="lblmodelo">Modelo:</label>
-                <input type="text" class="form-control" name="modelo" required>
+                <input type="text" class="form-control" {% if form.modelo.value != null %} value="{{ form.modelo.value }}" {% endif%} name="modelo" required>
             </div>
         </div>
         <div class="form-row">
             <div class="col-lg-12">
                 <label id="lblMotor">Motor:</label>
-                <input type="text" class="form-control" name="motor" required>
+                <input type="text" class="form-control" {% if form.motor.value != null %} value="{{ form.motor.value }}" {% endif%} name="motor" required>
             </div>
         </div>
         <div class="form-row">
             <div class="col-lg-12">
                 <label id="lblprecio">Precio:</label>
-                <input type="number" class="form-control" name="precio" required>
+                <input type="number" class="form-control" value="{{ form.precio.value }}" name="precio" required>
             </div>
         </div>
-        <div class="form-row">
-            <label for="lblImgFront">Imagen Frontal</label>
-            <input type="file" class="form-control-file" name="imgFront"  required>
+        <div class="form-row border-bottom my-3">
+            <label for="lblImgFront">Imagen Frontal: </label>
+            {% if form.imgFront.value != null %}
+            <input type="file" class="form-control-file"  name="imgFront">
+            <a href="/media/{{ form.imgFront.value }}" target="_blank">Actualmente: {{ form.imgFront.value }}</a>            
+            {% else %}
+            <input type="file" class="form-control-file"  name="imgFront"  required>
+            {% endif %}
         </div>
-        <div class="form-row">
-            <label for="lblImgSide">Imagen Lateral</label>
+        <div class="form-row border-bottom my-3">
+            <label for="lblImgSide">Imagen Lateral: </label>
+            {% if form.imgFront.value != null %}
+            <input type="file" class="form-control-file" name="imgSide">
+            <a href="/media/{{ form.imgSide.value }}" target="_blank">Actualmente: {{ form.imgSide.value }}</a>            
+            {% else %}
             <input type="file" class="form-control-file" name="imgSide" required>
+            {% endif %}
         </div>
-        <div class="form-row">
-            <label for="lblImgBack">Imagen Trasera</label>
-            <input type="file" class="form-control-file" name="imgBack"  required>
+        <div class="form-row border-bottom my-3">
+            <label for="lblImgBack">Imagen Trasera: </label>
+            {% if form.imgFront.value != null %}
+            <input type="file" class="form-control-file" name="imgBack" >
+            <a href="/media/{{ form.imgBack.value }}" target="_blank">Actualmente: {{ form.imgBack.value }}</a>
+            {% else %}
+            <input type="file" class="form-control-file" name="imgBack" required>
+            {% endif %}
         </div>
-        <div class="form-row">
-            <label for="lblImgInterior">Imagen Interior</label>
+        <div class="form-row border-bottom my-3">
+            <label for="lblImgInterior">Imagen Interior: </label>
+            {% if form.imgFront.value != null %}
+            <input type="file" class="form-control-file" name="imgInside" >
+            <a href="/media/{{ form.imgInside.value }}" target="_blank">Actualmente: {{ form.imgInside.value }}</a>
+            {% else %}
             <input type="file" class="form-control-file" name="imgInside" required>
+            {% endif %}
+            
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary">{{titulo}}</button>
     </div>
 </form>
 {% endblock %}

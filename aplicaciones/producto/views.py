@@ -20,7 +20,20 @@ def agregar_vehiculo(request):
             return redirect('/producto/agregar')
     else:
         form = VehiculoForm()
-    return render(request, 'producto/agregar_vehiculo.html', {'form': form})
+    return render(request, 'producto/agregar_vehiculo.html', {'form': form, 'titulo': 'Agregar'})
+
+def editar_vehiculo(request, vehiculo_id):
+    instancia= Vehiculo.objects.get(id=vehiculo_id)
+    form=  VehiculoForm(instance=instancia)
+    if request.method=="POST":
+        form= VehiculoForm(request.POST, request.FILES, instance=instancia)
+        if form.is_valid():
+            instancia= form.save(commit=False)
+            instancia.save()
+            modelo = form.cleaned_data.get('modelo')
+            messages.success(request, f'Vehiculo Modelo: {modelo} Modificado!')
+            return redirect('/producto/buscar')
+    return render(request, "producto/agregar_vehiculo.html",{'form': form, 'titulo': 'Modificar'})  
 
 def busqueda(request):
     vehiculo_list = Vehiculo.objects.all()

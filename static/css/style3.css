@@ -18,6 +18,9 @@ footer {
 #formulario{
   background-color: rgba(255, 251, 251, 0.623);
 }
+#tabla{
+  background-color: rgba(255, 251, 251, 0.623);
+}
 .error{
   color:red;
 }
