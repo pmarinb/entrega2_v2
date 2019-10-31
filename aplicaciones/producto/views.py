@@ -46,3 +46,11 @@ def eliminar(request, vehiculo_id):
     instacia.delete()
     messages.warning(request, f'Vehiculo de Marca: {instacia.marca}, Modelo: {instacia.modelo} Eliminado!')
     return redirect('/producto/buscar')
+
+def home(request):
+    productos = Vehiculo.objects.all()
+    return render(request, 'producto/home/home.html', {'productos': productos})
+
+def vehiculo_info(request, vehiculo_id):
+    producto= Vehiculo.objects.get(id=vehiculo_id)
+    return render(request, 'producto/home/vehiculo_info.html', {'producto': producto})
