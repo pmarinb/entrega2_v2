@@ -35,8 +35,14 @@ def editar_vehiculo(request, vehiculo_id):
             return redirect('/producto/buscar')
     return render(request, "producto/agregar_vehiculo.html",{'form': form, 'titulo': 'Modificar'})  
 
+#busqueda o listar, cumplen la misma funcion
 def busqueda(request):
     vehiculo_list = Vehiculo.objects.all()
     vehiculo_filter = VehiculoFilter(request.GET, queryset=vehiculo_list)
     return render(request, 'producto/busqueda_vehiculo.html', {'filter': vehiculo_filter})
 
+def eliminar(request, vehiculo_id):
+    instacia= Vehiculo.objects.get(id=vehiculo_id)
+    instacia.delete()
+    messages.warning(request, f'Vehiculo de Marca: {instacia.marca}, Modelo: {instacia.modelo} Eliminado!')
+    return redirect('/producto/buscar')

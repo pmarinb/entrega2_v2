@@ -99,6 +99,9 @@
             
         </div>
         <button type="submit" class="btn btn-primary">{{titulo}}</button>
+        {% if titulo == 'Modificar' %}
+        <a href="{% url 'buscar' %}" class="btn btn-primary">Volver</a>
+        {% endif %}
     </div>
 </form>
 {% endblock %}

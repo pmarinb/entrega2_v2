@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block title %}
-Agregar
+Buscador
 {% endblock %}
 
 {% block content %}
@@ -61,8 +61,8 @@ Agregar
                     No
                     {% endif %}
                 </td>
-                <td><a class="text-danger" href="#">Eliminar</a></td>
-                <td><a class="text-danger" href="{% url 'modificar' 1 %}">Modificar</a></td>
+                <td><a class="text-danger" href="/producto/eliminar_vehiculo/{{ vehiculo.id }}" onclick="return confirm('¿Esta seguro de borrar?');">Eliminar</a></td>
+                <td><a class="text-danger" href="/producto/editar_vehiculo/{{ vehiculo.id }}" >Modificar</a></td>
             </tr>
             {% endfor %}
             </tr>

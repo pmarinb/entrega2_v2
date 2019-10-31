@@ -47,6 +47,18 @@
                         <li class="nav-item">
                             <a href="#galeria" class="nav-link">Productos</a>
                         </li>
+                        {% if user.is_superuser %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Herramientas
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'agregar' %}">Agregar</a>
+                                <a class="dropdown-item" href="{% url 'buscar' %}">Administrar</a>
+                            </div>
+                        </li>
+                        {% endif %}
                     </ul>
                     <ul class="nav navbar-nav">
                         {% if user.is_authenticated %}
@@ -68,11 +80,11 @@
         {% endblock %}
         <!--Messages-->
         {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-                {% endfor %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
         {% endif %}
         {% block content %}
         <!--Contenido-->
