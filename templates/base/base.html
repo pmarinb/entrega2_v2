@@ -23,7 +23,7 @@
             <!--navbar-expand-lg especifica que en pantallas medias (md = medio) se mostrara
                 completo, de no ser asi tendra un diseño colapsado-->
             <nav class="navbar navbar-expand-md navbar-dark">
-                <a href="" class="navbar-brand">
+                <a href="{% url 'home' %}" class="navbar-brand">
                     <img id="logo" src="{% static 'img/classicJP-Logo-compressor.png' %}" alt="Classic.jp Logo">
                 </a>
                 <!--Boton que se activa automaticamente (internamente bootstrap) cuando la pantalla
@@ -62,6 +62,9 @@
                     </ul>
                     <ul class="nav navbar-nav">
                         {% if user.is_authenticated %}
+                        <span class="navbar-text">
+                            Bienvenido, {{ user.username }} !
+                        </span>
                         <li class="nav-item">
                             <a href="{% url 'logout' %}" class="nav-link">Cerrar Sesion</a>
                         </li>

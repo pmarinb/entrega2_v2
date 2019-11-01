@@ -9,7 +9,11 @@ from .filters import VehiculoFilter
 
 from django.contrib import messages
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+
 # Create your views here.
+@staff_member_required(login_url='home')
 def agregar_vehiculo(request):
     if request.method == 'POST':
         form = VehiculoForm(request.POST, request.FILES)
@@ -22,6 +26,7 @@ def agregar_vehiculo(request):
         form = VehiculoForm()
     return render(request, 'producto/agregar_vehiculo.html', {'form': form, 'titulo': 'Agregar'})
 
+@staff_member_required(login_url='home')
 def editar_vehiculo(request, vehiculo_id):
     instancia= Vehiculo.objects.get(id=vehiculo_id)
     form=  VehiculoForm(instance=instancia)
@@ -36,11 +41,13 @@ def editar_vehiculo(request, vehiculo_id):
     return render(request, "producto/agregar_vehiculo.html",{'form': form, 'titulo': 'Modificar'})  
 
 #busqueda o listar, cumplen la misma funcion
+@staff_member_required(login_url='home')
 def busqueda(request):
     vehiculo_list = Vehiculo.objects.all()
     vehiculo_filter = VehiculoFilter(request.GET, queryset=vehiculo_list)
     return render(request, 'producto/busqueda_vehiculo.html', {'filter': vehiculo_filter})
 
+@staff_member_required(login_url='home')
 def eliminar(request, vehiculo_id):
     instacia= Vehiculo.objects.get(id=vehiculo_id)
     instacia.delete()
