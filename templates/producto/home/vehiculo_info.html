@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ producto.modelo }}
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container-fluid">
+        <div id="row1" class="row">
+            <div id="titulo" class="col-12 text-left">
+                <h1>{{ producto.marca }} - {{ producto.modelo }}</h1>
+            </div>
+            <div class="col-lg-6">
+                <img src="/media/{{ producto.imgFront }}" alt="" class="img-fluid">
+            </div>
+            <div id="info" class="col-lg-6">
+                <h2>Informacion: </h2>
+                <h3>Año: {{ producto.year }} </h3>
+                <h3>Marca: {{ producto.marca }} </h3>
+                <h3>Modelo: {{ producto.modelo }} </h3>
+                <h3>Motor: {{ producto.motor }} </h3>
+                <h3>Precio: ${{ producto.precio }} CLP </h3>
+            </div>
+        </div>
+        <div id="row2" class="row">
+            <div class="col-lg-4">
+                <img src="/media/{{ producto.imgSide }}" alt="" class="img-fluid">
+            </div>
+            <div class="col-lg-4">
+                <img src="/media/{{ producto.imgInside }}" alt="" class="img-fluid">
+            </div>
+            <div class="col-lg-4">
+                <img src="/media/{{ producto.imgBack }}" alt="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
