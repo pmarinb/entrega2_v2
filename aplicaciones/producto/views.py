@@ -61,3 +61,10 @@ def home(request):
 def vehiculo_info(request, vehiculo_id):
     producto= Vehiculo.objects.get(id=vehiculo_id)
     return render(request, 'producto/home/vehiculo_info.html', {'producto': producto})
+
+def comprar_vehiculo(request, vehiculo_id):
+    producto= Vehiculo.objects.get(id=vehiculo_id)
+    producto.vendido = True
+    producto.save()
+    messages.success(request, f'Vehiculo de Marca: {producto.marca}, Modelo: {producto.modelo} Comprado!')
+    return redirect('/')

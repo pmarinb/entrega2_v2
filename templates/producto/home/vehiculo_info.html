@@ -26,6 +26,22 @@
                 <h3>Modelo: {{ producto.modelo }} </h3>
                 <h3>Motor: {{ producto.motor }} </h3>
                 <h3>Precio: ${{ producto.precio }} CLP </h3>
+
+                {% if producto.vendido or user.is_superuser %}
+                    {% if producto.vendido %}
+                    <div class="p-3 mb-2 bg-danger text-white text-center">¡Vendido!</div>
+                    <a href="" class="disabled btn btn-primary">Comprar</a>
+                    {% else %}
+                    <a href="" class="disabled btn btn-primary">Comprar</a>
+                    {% endif %}
+                {% else %}
+                    {% if user.is_authenticated %}
+                    <a href="/producto/comprar_vehiculo/{{ producto.id }}" class="btn btn-primary"
+                        onclick="return confirm('¿Esta seguro que desea comprar?');">Comprar</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-primary">Comprar</a>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
         <div id="row2" class="row">

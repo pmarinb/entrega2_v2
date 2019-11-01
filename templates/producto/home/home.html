@@ -11,21 +11,24 @@ Home
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="{% static '/img/img_Carousel/cruiser-front-compressor.jpg' %}" alt="First slide">
+                    <img class="d-block w-100" src="{% static '/img/img_Carousel/cruiser-front-compressor.jpg' %}"
+                        alt="First slide">
                     <div class="carousel-caption">
                         <p>"Lorem ipsum dolor sit amet, cu impetus adolescens nam"</p>
                         <h5> - Aitor Hernandez Saez</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="{% static '/img/img_Carousel/skyline-front-compressor.jpg' %}" alt="Second slide">
+                    <img class="d-block w-100" src="{% static '/img/img_Carousel/skyline-front-compressor.jpg' %}"
+                        alt="Second slide">
                     <div class="carousel-caption">
                         <p>"Has ut quidam iuvaret eruditi. Usu oblique feugait dissentiunt cu"</p>
                         <h5> - Pedro Riera Cruz</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="{% static '/img/img_Carousel/supra-front-compressor.jpg' %}" alt="Third slide">
+                    <img class="d-block w-100" src="{% static '/img/img_Carousel/supra-front-compressor.jpg' %}"
+                        alt="Third slide">
                     <div class="carousel-caption">
                         <p>"Eu solum iudicabit vulputate pro, tollit diceret invenire cu pro,"</p>
                         <h5> - Mar Vazquez Romero</h5>
@@ -51,7 +54,8 @@ Home
             </div>
             <div class="row">
                 <div class="col-lg-7" id="imagenSec">
-                    <img class="img-fluid" src="{% static '/img/imagen_section-compressor.jpg' %}" alt="classic jp section">
+                    <img class="img-fluid" src="{% static '/img/imagen_section-compressor.jpg' %}"
+                        alt="classic jp section">
                 </div>
                 <div class="col-lg-5" id="textoSec">
                     <h3>Nosotros</h3>
@@ -77,8 +81,11 @@ Home
                 {% for producto in productos%}
                 <div class="col col-lg-4 col-md-6 col-sm-12 text-center">
                     <a href="/producto/info/{{ producto.id }}" target="_blank">
-                        <img src="/media/{{ producto.imgFront }}" alt="" class="img-fluid">
+                        <img src="/media/{{ producto.imgFront }}" alt="bg" class="img-fluid">
                     </a>
+                    {% if producto.vendido %}
+                    <div class="p-3 mb-2 bg-danger text-white">¡Vendido!</div>
+                    {% endif %}
                     <h4>{{ producto.modelo }}</h4>
                     <h6>Marca: {{ producto.marca }} - Motor: {{ producto.motor }} - Año: {{ producto.year }}</h6>
                     <h5>Precio: ${{ producto.precio }} CLP</h5>
