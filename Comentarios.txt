@@ -1,0 +1,5 @@
+Para instalar las dependencias: 'pip install -r requirements.txt'
+
+*no recuedo haber instalado tantas dependencias fuera de:
+ -django-filters (Para los filtros)
+ -Pillow (para el manejo de imagenes)
