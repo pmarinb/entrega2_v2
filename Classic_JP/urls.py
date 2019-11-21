@@ -33,7 +33,8 @@ urlpatterns = [
     path('recuperacion-contraseña/continuar',auth_views.PasswordResetDoneView.as_view(template_name='usuario/password_reset_done.html'), name='password_reset_done'),
     path('recuperacion-contraseña-confirmar/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(template_name='usuario/password_reset_confirm.html'), name='password_reset_confirm'),
     path('recuperacion-contraseña-exitoso',auth_views.PasswordResetCompleteView.as_view(template_name='usuario/password_reset_complete.html'), name='password_reset_complete'),
-    
+    #API
+    path('api/v1.0/',include('aplicaciones.producto.api.urls')),
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
